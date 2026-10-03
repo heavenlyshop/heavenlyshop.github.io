@@ -1,1 +1,787 @@
-Heavenly Shop is coming soon...
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Tags SEO Dasar -->
+    <title>Heavenly Shop | Mudah, Bersahabat</title>
+    <meta name="description" content="Heavenly Shop - rumah perlengkapan rumah tangga modern yang cantik, praktis, dan ramah untuk keluarga.">
+    <meta name="keywords" content="Heavenly Shop, heavenlyshop.official, rumah tangga, produk rumah tangga, Mudah Bersahabat">
+    <meta name="author" content="Heavenly Shop">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./img/logo.png">
+    <link rel="apple-touch-icon" href="./img/logo.png">
+
+    <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Heavenly Shop | Mudah, Bersahabat">
+    <meta property="og:description" content="Heavenly Shop menyediakan pilihan produk rumah tangga modern yang mudah, hangat, dan penuh kasih untuk kehidupan sehari-hari.">
+    <meta property="og:image" content="./img/logo.png">
+    <meta property="og:url" content="https://heavenlyshop.official">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Heavenly Shop | Mudah, Bersahabat">
+    <meta name="twitter:description" content="Heavenly Shop - Mudah, Bersahabat">
+    <meta name="twitter:image" content="./img/logo.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#FCE7F3',
+                            100: '#F9A8D4',
+                            500: '#EC4899',
+                            600: '#E6007E',
+                            700: '#1E1B4B',
+                            800: '#1E3A8A',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Poppins', 'Nunito', 'Arial', 'sans-serif'],
+                        script: ['"Brush Script MT"', '"Lucida Handwriting"', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+
+        :root {
+            --heavenly-pink: #E6007E;
+            --heavenly-magent: #EC4899;
+            --heavenly-baby: #FCE7F3;
+            --heavenly-navy: #1E1B4B;
+            --heavenly-blue: #1E3A8A;
+            --heavenly-white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', 'Nunito', Arial, sans-serif;
+            color: var(--heavenly-navy);
+            background:
+                radial-gradient(circle at 70% 10%, rgba(252, 231, 243, 0.8), transparent 20%),
+                linear-gradient(135deg, #fff 0%, #fce7f3 100%);
+        }
+
+        .brand-script {
+            font-family: 'Pacifico', 'Brush Script MT', cursive;
+        }
+
+        .heart-spark {
+            position: relative;
+        }
+
+        .heart-spark::before,
+        .heart-spark::after {
+            content: "✦";
+            position: absolute;
+            color: var(--heavenly-magent);
+            font-size: 16px;
+        }
+
+        .heart-spark::before { left: -8px; top: -10px; }
+        .heart-spark::after { right: -8px; bottom: -10px; }
+    </style>
+</head>
+
+
+<body x-data="{ loading: true }" x-init="window.addEventListener('load', () => setTimeout(() => loading = false, 500))" class="bg-brand-50 text-gray-800">
+    
+    <!-- ELEMEN LOADING SCREEN -->
+    <div x-show="loading" 
+         x-transition:leave="transition ease-in duration-500" 
+         x-transition:leave-start="opacity-100" 
+         x-transition:leave-end="opacity-0" 
+         class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-brand-50">
+        
+        <!-- Container Logo dengan Efek Zoom In Out -->
+        <div class="relative flex flex-col items-center">
+            <!-- Ring animasi halus di belakang logo (Opsional) -->
+            <div class="absolute -inset-4 rounded-full bg-brand-100 animate-ping opacity-75"></div>
+            
+            <!-- Logo Utama dengan Efek Zoom In Out -->
+            <img src="./img/logo.png" alt="Heavenly Shop Logo" class="relative w-32 h-32 object-contain animate-zoom-pulse drop-shadow-md">
+            
+            <!-- Text Teks/Slogan Loading -->
+            <p class="mt-4 text-brand-700 font-semibold tracking-wider text-sm animate-pulse">
+                Heavenly Shop
+            </p>
+            <span class="text-xs text-brand-600 mt-1 italic">Mudah, Bersahabat</span>
+        </div>
+
+    </div>
+    
+
+    
+
+    
+    <!-- Navbar / Header -->
+    <header x-data="{ mobileMenuOpen: false }" class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+
+            <!-- Logo & Brand -->
+            <div class="flex items-center space-x-3">
+                <!-- Container Logo dengan Overlay keluar border bawah -->
+                <div class="relative w-12 h-10">
+                    <img 
+                        src="./img/logo.png" 
+                        alt="Heavenly Shop Logo" 
+                        class="absolute -top-1 left-0 w-14 h-14 max-w-none object-contain filter drop-shadow-md transition-transform hover:scale-105"
+                    >
+                </div>
+                
+                <!-- Teks Judul & Tagline -->
+                <div>
+                    <span class="text-2xl font-bold text-brand-700 tracking-tight block leading-none">Heavenly Shop</span>
+                    <span class="text-[10px] font-semibold text-brand-600 tracking-wider uppercase block mt-1 leading-none">Mudah &amp; Bersahabat</span>
+                </div>
+            </div>
+
+            <!-- Navigasi Desktop (One Page Links) -->
+            <nav class="hidden md:flex items-center space-x-6 text-xl font-medium text-gray-700">
+                <a href="#beranda" class="hover:text-brand-600 transition-colors">Beranda</a>
+                <a href="#produk" class="hover:text-brand-600 transition-colors">Produk</a>
+                <a href="#testimoni" class="hover:text-brand-600 transition-colors">Testimoni</a>
+                <a href="#galeri" class="hover:text-brand-600 transition-colors">Galeri</a>
+                <a href="#media-sosial" class="hover:text-brand-600 transition-colors">Media Sosial</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Tombol CTA WhatsApp (Desktop & Tablet) -->
+                <a href="https://wa.me/62852516799146?text=Halo%20Heavenly%20Shop" target="_blank" class="hidden sm:inline-flex items-center space-x-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm">
+                    <i class="fab font-bold fa-whatsapp text-lg"></i>
+                    <span>Hubungi Kami</span>
+                </a>
+
+                <!-- Tombol Hamburger Mobile -->
+                <button 
+                    @click="mobileMenuOpen = !mobileMenuOpen" 
+                    type="button" 
+                    class="md:hidden p-2 rounded-md text-gray-700 hover:text-brand-600 hover:bg-gray-100 focus:outline-none"
+                    aria-label="Toggle Menu"
+                >
+                    <!-- Icon Hamburger (Saat Tertutup) -->
+                    <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <!-- Icon Close (Saat Terbuka) -->
+                    <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div 
+            x-show="mobileMenuOpen" 
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            @click.away="mobileMenuOpen = false"
+            class="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-4 space-y-3 shadow-lg"
+        >
+            <a @click="mobileMenuOpen = false" href="#beranda" class="block text-gray-700 hover:text-brand-600 font-medium py-2 border-b border-gray-50">Beranda</a>
+            <a @click="mobileMenuOpen = false" href="#produk" class="block text-gray-700 hover:text-brand-600 font-medium py-2 border-b border-gray-50">Produk</a>
+            <a @click="mobileMenuOpen = false" href="#testimoni" class="block text-gray-700 hover:text-brand-600 font-medium py-2 border-b border-gray-50">Testimoni</a>
+            <a @click="mobileMenuOpen = false" href="#galeri" class="block text-gray-700 hover:text-brand-600 font-medium py-2 border-b border-gray-50">Galeri</a>
+            <a @click="mobileMenuOpen = false" href="#media-sosial" class="block text-gray-700 hover:text-brand-600 font-medium py-2 border-b border-gray-50">Media Sosial</a>
+
+            <!-- Tombol WhatsApp Mobile (Layar Ekstra Kecil) -->
+            <a href="https://wa.me/62852516799146?text=Halo%20Heavenly%20Shop" target="_blank" class="sm:hidden flex items-center justify-center space-x-2 bg-brand-600 text-white text-sm font-semibold px-4 py-2.5 rounded-full transition shadow-sm w-full mt-2">
+                <i class="fab font-bold fa-whatsapp text-lg"></i>
+                <span>Hubungi Kami</span>
+            </a>
+        </div>
+    </header>
+
+
+
+
+
+
+
+
+    
+   
+    
+
+
+    <!-- Hero Banner Minimalis dengan Alpine.js Slider -->
+    <section 
+        x-data="{
+            activeSlide: 0,
+            slides: [
+                './img/hero/hero1.jpg',
+                './img/hero/hero2.jpg'
+            ],
+            timer: null,
+            init() {
+                // Auto slide setiap 5 detik
+                this.timer = setInterval(() => {
+                    this.next();
+                }, 5000);
+            },
+            next() {
+                this.activeSlide = (this.activeSlide === this.slides.length - 1) ? 0 : this.activeSlide + 1;
+            },
+            prev() {
+                this.activeSlide = (this.activeSlide === 0) ? this.slides.length - 1 : this.activeSlide - 1;
+            }
+        }"
+        class="relative w-full border-b border-gray-100 overflow-hidden bg-gray-50 group"
+    >
+        <!-- Slides Container -->
+        <div class="relative w-full h-48 sm:h-64 md:h-80 lg:h-[450px]">
+            <template x-for="(slide, index) in slides" :key="index">
+                <div 
+                    x-show="activeSlide === index"
+                    x-transition:enter="transition opacity ease-out duration-700"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    x-transition:leave="transition opacity ease-in duration-300"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    class="absolute inset-0 w-full h-full"
+                >
+                    <img 
+                        :src="slide" 
+                        :alt="'Heavenly Shop Hero Banner ' + (index + 1)" 
+                        class="w-full h-full object-cover object-center block"
+                    >
+                </div>
+            </template>
+        </div>
+
+        <!-- Tombol Navigasi Prev -->
+        <button 
+            @click="prev()" 
+            class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none"
+            aria-label="Previous Slide"
+        >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+
+        <!-- Tombol Navigasi Next -->
+        <button 
+            @click="next()" 
+            class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none"
+            aria-label="Next Slide"
+        >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </button>
+
+        <!-- Indikator Dots -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+            <template x-for="(slide, index) in slides" :key="index">
+                <button 
+                    @click="activeSlide = index" 
+                    :class="activeSlide === index ? 'bg-white w-8' : 'bg-white/50 w-2.5'"
+                    class="h-2.5 transition-all duration-300 focus:outline-none"
+                    :aria-label="'Go to slide ' + (index + 1)"
+                ></button>
+            </template>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <!-- Rekapan Info Keunggulan -->
+    <section id="beranda" class="py-8 bg-white border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="p-4 rounded-xl bg-gray-50 text-center border border-gray-100 hover:border-brand-100 transition">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-2xl">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl md:text-xl text-gray-900">Produk Rumah Tangga</h3>
+                    <p class="text-lg text-gray-500 mt-0.5">Pilihan praktis untuk rumah</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 text-center border border-gray-100 hover:border-brand-100 transition">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-2xl">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl md:text-xl text-gray-900">Aman & Nyaman</h3>
+                    <p class="text-lg text-gray-500 mt-0.5">Produk rumah yang dipilih dengan hati</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 text-center border border-gray-100 hover:border-brand-100 transition">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-2xl">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl md:text-xl text-gray-900">Belanja Mudah</h3>
+                    <p class="text-lg text-gray-500 mt-0.5">Tersedia untuk pelanggan Indonesia</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 text-center border border-gray-100 hover:border-brand-100 transition">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-2xl">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="font-semibold text-2xl md:text-xl text-gray-900">Kualitas Terpercaya</h3>
+                    <p class="text-lg text-gray-500 mt-0.5">Pelayanan ramah dan siap membantu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    
+
+    
+    
+
+
+
+
+    <!-- Katalog Produk Grid Gambar (2 Kolom - Ratio 4:5 - Hover Button) -->
+    <section id="produk" class="py-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mt-1">Produk Pilihan</h2>
+            </div>
+
+            <!-- Grid 2 Kolom -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                
+                <!-- Item Produk 1 -->
+                <div class="group relative aspect-[4/5] w-full bg-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+                    <!-- Gambar Produk -->
+                    <img 
+                        src="img/products/1.jpg" 
+                        alt="Produk rumah tangga Heavenly Shop" 
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    >
+                    
+                    <!-- Overlay Hover / Action Container -->
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                        <a 
+                            href="https://wa.me/62852516799146?text=Halo%20Heavenly%20Shop" 
+                            target="_blank" 
+                            class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm px-6 py-3 transition-transform transform translate-y-4 group-hover:translate-y-0 duration-300 flex items-center space-x-2 shadow-lg"
+                        >
+                            <i class="fab fa-whatsapp text-lg"></i>
+                            <span>Pesan via WA</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item Produk 2 -->
+                <div class="group relative aspect-[4/5] w-full bg-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+                    <!-- Gambar Produk -->
+                    <img 
+                        src="img/products/2.jpg" 
+                        alt="Produk rumah tangga Heavenly Shop" 
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    >
+                    
+                    <!-- Overlay Hover / Action Container -->
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                        <a 
+                            href="https://wa.me/62852516799146?text=Halo%20Heavenly%20Shop" 
+                            target="_blank" 
+                            class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm px-6 py-3 transition-transform transform translate-y-4 group-hover:translate-y-0 duration-300 flex items-center space-x-2 shadow-lg"
+                        >
+                            <i class="fab fa-whatsapp text-lg"></i>
+                            <span>Pesan via WA</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <!-- Testimoni 4 Kolom -->
+    <section id="testimoni" class="py-12 bg-gray-50"
+        x-data="{
+            testimonials: [
+                {
+                    name: 'Rina',
+                    role: 'Pelapak Online',
+                    initial: 'R',
+                    comment: 'Belanja di Heavenly Shop terasa gampang banget. Produk rumah tangga yang saya butuhkan datang cepat dan tampilannya rapi.',
+                    stars: 5
+                },
+                {
+                    name: 'Ninda',
+                    role: 'Ibu Rumah Tangga',
+                    initial: 'N',
+                    comment: 'Saya suka cara Heavenly Shop membantu pilih produk yang cocok untuk rumah. Proses belanja terasa ramah dan bersahabat.',
+                    stars: 5
+                },
+                {
+                    name: 'Maya',
+                    role: 'Pelanggan Baru',
+                    initial: 'M',
+                    comment: 'Saya senang karena produk yang dikirim sesuai foto dan deskripsi. Packaging-nya juga rapi untuk belanja kebutuhan rumah.',
+                    stars: 5
+                },
+                {
+                    name: 'Nia',
+                    role: 'Pembeli Setia',
+                    initial: 'N',
+                    comment: 'Belanja di Heavenly Shop menyenangkan, cepat respon, dan produk yang saya pilih langsung terasa cocok untuk kebutuhan harian.',
+                    stars: 5
+                }
+            ]
+        }"
+        class="py-12 bg-white border-t border-b border-gray-100"
+    >
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-6xl mx-auto mb-8">
+                <span class="text-lg font-semibold text-brand-600 uppercase tracking-wider">Testimoni</span>
+                <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mt-1">Mudah, Bersahabat</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <template x-for="(item, index) in testimonials" :key="index">
+                    <div class="p-5 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="text-amber-400 text-lg flex space-x-0.5">
+                                <template x-for="star in item.stars" :key="star">
+                                    <i class="fas fa-star"></i>
+                                </template>
+                            </div>
+                            <p class="text-lg text-gray-600 italic" x-text="`&quot;${item.comment}&quot;`"></p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold text-lg flex items-center justify-center" x-text="item.initial"></div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900" x-text="item.name"></h4>
+                                <span class="text-[10px] text-gray-400" x-text="item.role"></span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+
+
+    
+    <section id="galeri" class="py-12 bg-gray-50">
+        <div x-data="{
+            images: [
+                './img/gallery/1.jpg',
+                './img/gallery/2.jpg',
+                './img/gallery/3.jpg',
+                './img/gallery/1.jpg',
+                './img/gallery/2.jpg',
+                './img/gallery/3.jpg',
+                './img/gallery/1.jpg',
+                './img/gallery/2.jpg'
+            ],
+            share(url, platform) {
+                const fullUrl = encodeURIComponent(window.location.origin + '/' + url.replace('./', ''));
+                const shareUrls = {
+                    facebook: `https://www.facebook.com/sharer/sharer.php?u=${fullUrl}`,
+                    twitter: `https://twitter.com/intent/tweet?url=${fullUrl}`,
+                    whatsapp: `https://api.whatsapp.com/send?text=${fullUrl}`
+                };
+                if (shareUrls[platform]) window.open(shareUrls[platform], '_blank');
+            }
+        }" class="grid grid-cols-2 md:grid-cols-4">
+
+            <template x-for="(img, index) in images" :key="index">
+                <div class="relative group aspect-[4/5] overflow-hidden shadow-none">
+                    <!-- Gambar -->
+                    <img :src="img" :alt="'Gallery Image ' + (index + 1)" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+
+                    <!-- Overlay Hover Share -->
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 p-4">
+                        <!-- Share Facebook -->
+                        <button @click="share(img, 'facebook')" class="w-11 h-11 bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 shadow-lg" title="Share to Facebook">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </button>
+
+                        <!-- Share Twitter / X -->
+                        <button @click="share(img, 'twitter')" class="w-11 h-11 bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 shadow-lg delay-75" title="Share to Twitter">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </button>
+
+                        <!-- Share WhatsApp -->
+                        <button @click="share(img, 'whatsapp')" class="w-11 h-11 bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 shadow-lg delay-150" title="Share to WhatsApp">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+
+    </section>
+
+
+
+
+
+    
+
+    <!-- Section Link Media Sosial (Ukuran Kotak Besar dengan Icon & Link Eksternal) -->
+    <section id="media-sosial" class="py-12 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-7xl mx-auto mb-8">
+                <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mt-1">Heavenly Shop di Media Sosial</h2>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/heavenlyshop.official/" target="_blank" class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-pink-300 transition flex flex-col items-center justify-center text-center group">
+                    <div class="w-32 h-32 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <span class="font-bold text-lg text-gray-800 mt-3">Instagram</span>
+                    <span class="text-lg text-gray-400 mt-0.5">@heavenlyshop.official</span>
+                </a>
+
+                <!-- Facebook -->
+                <a href="#" target="_blank" class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-blue-300 transition flex flex-col items-center justify-center text-center group">
+                    <div class="w-32 h-32 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <span class="font-bold text-lg text-gray-800 mt-3">Facebook</span>
+                    <span class="text-lg text-gray-400 mt-0.5">Heavenly Shop</span>
+                </a>
+
+                <!-- TikTok -->
+                <a href="#" target="_blank" class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-gray-400 transition flex flex-col items-center justify-center text-center group">
+                    <div class="w-32 h-32 rounded-2xl bg-black text-white flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <span class="font-bold text-lg text-gray-800 mt-3">TikTok</span>
+                    <span class="text-lg text-gray-400 mt-0.5">@heavenlyshop.official</span>
+                </a>
+
+                <!-- WA Channel -->
+                <a href="https://wa.me/62852516799146?text=Halo%20Heavenly%20Shop" target="_blank" class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-green-300 transition flex flex-col items-center justify-center text-center group">
+                    <div class="w-32 h-32 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <span class="font-bold text-lg text-gray-800 mt-3">WA Channel</span>
+                    <span class="text-lg text-gray-400 mt-0.5">0852516799146</span>
+                </a>
+
+                <!-- Youtube -->
+                <a href="#" target="_blank" class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-red-300 transition flex flex-col items-center justify-center text-center group col-span-2 sm:col-span-1">
+                    <div class="w-32 h-32 rounded-2xl bg-red-600 text-white flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <span class="font-bold text-lg text-gray-800 mt-3">YouTube</span>
+                    <span class="text-lg text-gray-400 mt-0.5">Mudah &amp; Bersahabat</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    
+    <!-- Section Alamat Usaha -->
+    <section id="alamat-usaha" class="py-12 bg-gradient-to-br from-brand-50 to-white border-t border-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-100 text-brand-700 shadow-sm mb-4">
+                    <i class="fas fa-map-marker-alt text-2xl"></i>
+                </div>
+                <span class="block text-xs font-bold uppercase tracking-[0.2em] text-brand-600 mb-2">Alamat Usaha</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">Kunjungi Heavenly Shop</h2>
+            </div>
+
+            <div class="grid md:grid-cols-[0.95fr_1.05fr] gap-8 items-stretch">
+                <div class="relative overflow-hidden rounded-3xl shadow-xl border border-brand-100 bg-white min-h-[300px]">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(92,120,76,0.08),transparent_60%)]"></div>
+                    <div class="relative h-full min-h-[300px] p-8 flex flex-col justify-between">
+                        <div class="flex items-center justify-between">
+                            <span class="inline-flex items-center gap-2 text-brand-700 font-semibold text-sm uppercase tracking-wide">
+                                <i class="fas fa-location-dot"></i>
+                                <span>Kota Jayapura, Papua</span>
+                            </span>
+                            <span class="w-12 h-12 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-md">
+                                <i class="fas fa-map-pin text-xl"></i>
+                            </span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="w-24 h-24 rounded-full border-4 border-brand-100 bg-brand-50 flex items-center justify-center mx-auto">
+                                <i class="fas fa-map-marker-alt text-4xl text-brand-600"></i>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-xs font-bold uppercase tracking-[0.2em] text-brand-600">Heavenly Shop</div>
+                                <div class="text-sm text-gray-500 mt-2">Mudah, Bersahabat</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="rounded-2xl bg-brand-50 py-3">
+                                <div class="text-brand-700 font-bold text-lg">00</div>
+                                <div class="text-[11px] text-gray-500 uppercase">RT</div>
+                            </div>
+                            <div class="rounded-2xl bg-brand-50 py-3">
+                                <div class="text-brand-700 font-bold text-lg">00</div>
+                                <div class="text-[11px] text-gray-500 uppercase">RW</div>
+                            </div>
+                            <div class="rounded-2xl bg-brand-50 py-3">
+                                <div class="text-brand-700 font-bold text-lg">Papua</div>
+                                <div class="text-[11px] text-gray-500 uppercase">Wilayah</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl border border-brand-100 p-8 md:p-10 flex flex-col justify-center">
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="w-12 h-12 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-sm">
+                            <i class="fas fa-location-arrow"></i>
+                        </span>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand-600">Alamat Usaha</span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mt-1">Heavenly Shop</h3>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-4 border-b border-gray-100 pb-4">
+                            <span class="mt-1 w-10 h-10 rounded-full bg-brand-50 text-brand-700 flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </span>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wide text-gray-500">Alamat</div>
+                                <div class="text-lg font-semibold text-gray-800 leading-relaxed">Jln. Kabupaten, Kota Jayapura</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 border-b border-gray-100 pb-4">
+                            <span class="mt-1 w-10 h-10 rounded-full bg-brand-50 text-brand-700 flex items-center justify-center">
+                                <i class="fas fa-people-arrows"></i>
+                            </span>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wide text-gray-500">RT / RW</div>
+                                <div class="text-lg font-semibold text-gray-800">RT 00 / RW 00</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <span class="mt-1 w-10 h-10 rounded-full bg-brand-50 text-brand-700 flex items-center justify-center">
+                                <i class="fas fa-city"></i>
+                            </span>
+                            <div>
+                                <div class="text-xs font-bold uppercase tracking-wide text-gray-500">Wilayah</div>
+                                <div class="text-lg font-semibold text-gray-800">Kabupaten Jayapura, Papua</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="https://wa.me/62852516799146?text=Halo%20Heavenly%20Shop,%20saya%20ingin%20datang%20ke%20alamat%20usaha" target="_blank" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-3 rounded-full transition">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Pesan &amp; Kunjungi</span>
+                        </a>
+                        <a href="https://maps.google.com/?q=Jln.%20Kabupaten,%20Kota%20Jayapura,%20Kabupaten%20Jayapura,%20Papua" target="_blank" class="inline-flex items-center gap-2 border border-brand-600 text-brand-700 hover:bg-brand-600 hover:text-white font-semibold px-5 py-3 rounded-full transition">
+                            <i class="fas fa-directions"></i>
+                            <span>Buka Maps</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Minimalis Centered -->
+    <footer class="bg-white border-t border-gray-200 py-10">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-4">
+            
+            <!-- Logo Ukuran Besar (Centered) -->
+            <div class="flex justify-center">
+                <img src="./img/logo.png" alt="Heavenly Shop Logo" class="h-[350px] w-auto object-contain">
+            </div>
+
+            <!-- Branding & Teks di Bawah Logo -->
+            <div class="space-y-1">
+                <p class="text-lg text-gray-500">
+                    &copy; 2026 Heavenly Shop. All rights reserved.
+                </p>
+            </div>
+
+            <!-- Powered by -->
+            <p class="text-lg text-gray-400 pt-2">
+                Powered by <a href="https://afrolabs.github.io" target="_blank" rel="noopener noreferrer" class="text-gray-600 font-semibold hover:text-gray-900 transition-colors hover:underline">afrolabs.github.io</a>
+            </p>
+
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Floating Action Buttons (Kanan Bawah: Back to Top & WhatsApp) -->
+    <div x-data="{ showTopBtn: false }" @scroll.window="showTopBtn = (window.pageYOffset > 300)" class="fixed bottom-5 right-5 z-40 flex flex-col items-center space-y-3">
+        <!-- Back to Top Button -->
+        <button @click="window.scrollTo({top: 0, behavior: 'smooth'})" x-show="showTopBtn" x-transition x-cloak class="w-10 h-10 bg-gray-800/80 hover:bg-gray-900 text-white rounded-full flex items-center justify-center shadow-md backdrop-blur-sm transition">
+            <i class="fas fa-arrow-up text-sm"></i>
+        </button>
+
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/62852516799146?text=Halo%20Heavenly%20Shop,%20saya%20ingin%20bertanya%20mengenai%20produk" target="_blank" class="w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-105">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+
+</body>
+</html>
